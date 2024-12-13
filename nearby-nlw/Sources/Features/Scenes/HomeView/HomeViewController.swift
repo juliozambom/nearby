@@ -102,7 +102,7 @@ extension HomeViewController: MKMapViewDelegate {
             
             if let pinImage = UIImage(named: "pin") {
                 annotationView?.image = pinImage
-                annotationView?.frame.size = CGSize(width: 24, height: 32)
+                annotationView?.frame.size = CGSize(width: 36, height: 48)
             }
         } else {
             annotationView?.annotation = annotation
