@@ -146,10 +146,11 @@ class HomeView: UIView {
     
     func updateFilterButtons(with categories: [Category], action: @escaping(Category) -> Void) {
         let categoryIcons: [String: String] = [
-            "Alimentação": "fork.knife",
+            "Alimentação": "kitchen",
             "Compras": "cart",
-            "Hospedagem": "bed.double",
-            "Padaria": "cup.and.saucer"
+            "Hospedagem": "bed",
+            "Padaria": "shopping",
+            "Cinema": "movie"
         ]
         
         self.categories = categories
@@ -172,7 +173,7 @@ class HomeView: UIView {
         let button = UIButton(type: .system)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle(title, for: .normal)
-        button.setImage(UIImage(systemName: iconName), for: .normal)
+        button.setImage(UIImage(named: iconName), for: .normal)
         button.layer.cornerRadius = 8
         button.tintColor = Colors.gray600
         button.backgroundColor = Colors.gray100
@@ -181,7 +182,7 @@ class HomeView: UIView {
         button.imageView?.contentMode = .scaleAspectFit
         button.imageView?.heightAnchor.constraint(equalToConstant: 13).isActive = true
         button.imageView?.widthAnchor.constraint(equalToConstant: 13).isActive = true
-        button.imageEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+        button.imageEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 8)
         button.contentEdgeInsets = UIEdgeInsets(top: 8, left: 12, bottom: 8, right: 12)
 
         
