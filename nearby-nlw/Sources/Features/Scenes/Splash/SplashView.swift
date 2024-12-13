@@ -35,9 +35,20 @@ class SplashView: UIView {
         return image
     }()
     
+    let loadingIndicatorView: UIActivityIndicatorView = {
+        let loading = UIActivityIndicatorView()
+        loading.color = .white
+        loading.startAnimating()
+        loading.translatesAutoresizingMaskIntoConstraints = false
+        loading.transform = CGAffineTransform(scaleX: 1.5, y: 1.5)
+
+        return loading
+    }()
+    
     private func setupUI() {
         self.addSubview(logoImageView)
         self.addSubview(backgroundImageView)
+        self.addSubview(loadingIndicatorView)
      
         setupConstraints()
     }
@@ -47,7 +58,10 @@ class SplashView: UIView {
             logoImageView.centerXAnchor.constraint(equalTo: self.centerXAnchor),
             logoImageView.centerYAnchor.constraint(equalTo: self.centerYAnchor),
             
-            backgroundImageView.bottomAnchor.constraint(equalTo: self.bottomAnchor)
+            backgroundImageView.bottomAnchor.constraint(equalTo: self.bottomAnchor),
+            
+            loadingIndicatorView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -48),
+            loadingIndicatorView.centerXAnchor.constraint(equalTo: self.centerXAnchor)
         ])
     }
 }
