@@ -199,6 +199,7 @@ class DetailsViewController: UIViewController {
     private func setupUI() {
         view.addSubview(scrollView)
         scrollView.addSubview(contentView)
+        scrollView.showsVerticalScrollIndicator = false
         contentView.addSubview(coverImageView)
         contentView.addSubview(containerView)
     

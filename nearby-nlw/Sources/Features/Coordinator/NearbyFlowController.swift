@@ -28,8 +28,24 @@ extension NearbyFlowController: SplashFlowDelegate {
     func decideNavigationFlow() {
         let contentView = WelcomeView()
         let welcomeViewController = WelcomeViewController(contentView: contentView)
-        welcomeViewController.flowDelegate = self
-        navigationController?.pushViewController(welcomeViewController, animated: true)
+        let homeViewController = HomeViewController()
+        
+        let alreadyOppenedTheAppKey = "nearby@alreadyOppenedTheApp"
+        
+        let defaults = UserDefaults.standard;
+        let alreadyOppenedTheApp = defaults.bool(forKey: alreadyOppenedTheAppKey);
+        
+        var nextViewController: UIViewController
+        
+        if alreadyOppenedTheApp {
+            nextViewController = homeViewController
+        } else {
+            welcomeViewController.flowDelegate = self
+            nextViewController = welcomeViewController
+            defaults.set(true, forKey: alreadyOppenedTheAppKey)
+        }
+        
+        navigationController?.pushViewController(nextViewController, animated: true)
     }
 }
 
