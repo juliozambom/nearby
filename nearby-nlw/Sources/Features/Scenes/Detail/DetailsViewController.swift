@@ -44,12 +44,41 @@ class DetailsViewController: UIViewController {
         return label
     }()
     
-    private let infoTitleLabel: UILabel = {
+    private let couponsAvailableView: UIView = {
+        let view = UIView()
+        view.backgroundColor = Colors.redLight
+        view.layer.cornerRadius = 8
+        view.translatesAutoresizingMaskIntoConstraints = false
+        
+        return view
+    }()
+    
+    private let ticketIconView: UIImageView = {
+        let ticketIconView = UIImageView()
+        
+        ticketIconView.image = UIImage(named: "ticket")
+        ticketIconView.tintColor = Colors.redBase
+        ticketIconView.translatesAutoresizingMaskIntoConstraints = false
+        
+        return ticketIconView
+    }()
+    
+    private let couponsLabelQuantity: UILabel = {
         let label = UILabel()
-        label.font = Typography.textMD
-        label.textColor = Colors.gray500
-        label.text = "Informações"
-        label.numberOfLines = 0
+        
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = Typography.titleSM
+        
+        return label
+    }()
+    
+    private let couponsLabel: UILabel = {
+        let label = UILabel()
+        
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = Typography.textSM
+        label.text = "cupons disponíveis"
+        
         return label
     }()
     
@@ -61,16 +90,6 @@ class DetailsViewController: UIViewController {
         return label
     }()
     
-    private let couponTitleLabel: UILabel = {
-        let label = UILabel()
-        label.font = Typography.titleMD
-        label.textColor = Colors.gray500
-        label.text = "Utilize esse cupom"
-        return label
-    }()
-    
-    private let infoStackView = UIStackView()
-    
     private let regulationLabel: UILabel = {
         let label = UILabel()
         label.font = Typography.titleSM
@@ -78,6 +97,25 @@ class DetailsViewController: UIViewController {
         label.numberOfLines = 0
         return label
     }()
+    
+    private let infoTitleLabel: UILabel = {
+        let label = UILabel()
+        label.font = Typography.titleMD
+        label.textColor = Colors.gray500
+        label.text = "Informações"
+        label.numberOfLines = 0
+        return label
+    }()
+    
+    private let couponTitleLabel: UILabel = {
+        let label = UILabel()
+        label.font = Typography.titleMD
+        label.textColor = Colors.gray500
+        label.text = "Cupons usados"
+        return label
+    }()
+    
+    private let infoStackView = UIStackView()
     
     private let couponStackView: UIStackView = {
         let iconImageView = UIImageView(image: UIImage(named: "ticket"))
@@ -163,18 +201,23 @@ class DetailsViewController: UIViewController {
         scrollView.addSubview(contentView)
         contentView.addSubview(coverImageView)
         contentView.addSubview(containerView)
-        
+    
         containerView.addSubview(titleLabel)
         containerView.addSubview(descriptionLabel)
+        containerView.addSubview(couponsAvailableView)
         containerView.addSubview(infoTitleLabel)
         containerView.addSubview(infoStackView)
-        containerView.addSubview(divider)
         containerView.addSubview(regulationTitleLabel)
         containerView.addSubview(regulationLabel)
-        containerView.addSubview(divider2)
+        containerView.addSubview(divider)
         containerView.addSubview(couponTitleLabel)
         containerView.addSubview(couponStackView)
+        containerView.addSubview(divider2)
         containerView.addSubview(qrCodeButton)
+        
+        couponsAvailableView.addSubview(ticketIconView)
+        couponsAvailableView.addSubview(couponsLabelQuantity)
+        couponsAvailableView.addSubview(couponsLabel)
         
         couponStackView.addArrangedSubview(couponCodeLabel)
         infoStackView.axis = .vertical
@@ -230,20 +273,36 @@ class DetailsViewController: UIViewController {
             
             descriptionLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 12),
             
-            infoTitleLabel.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 24),
-            infoTitleLabel.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 24),
+            couponsAvailableView.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 12),
+            couponsAvailableView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 24),
+            couponsAvailableView.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -24),
+            couponsAvailableView.heightAnchor.constraint(greaterThanOrEqualToConstant: 48),
             
-            infoStackView.topAnchor.constraint(equalTo: infoTitleLabel.bottomAnchor, constant: 12),
+            ticketIconView.heightAnchor.constraint(equalToConstant: 24),
+            ticketIconView.widthAnchor.constraint(equalToConstant: 24),
+            ticketIconView.leadingAnchor.constraint(equalTo: couponsAvailableView.leadingAnchor, constant: 10),
+            ticketIconView.centerYAnchor.constraint(equalTo: couponsAvailableView.centerYAnchor),
             
-            divider.topAnchor.constraint(equalTo: infoStackView.bottomAnchor, constant: 16),
-            divider.heightAnchor.constraint(equalToConstant: 1),
+            couponsLabelQuantity.centerYAnchor.constraint(equalTo: ticketIconView.centerYAnchor),
+            couponsLabelQuantity.leadingAnchor.constraint(equalTo: ticketIconView.trailingAnchor, constant: 8),
             
-            regulationTitleLabel.topAnchor.constraint(equalTo: divider.bottomAnchor, constant: 16),
+            couponsLabel.centerYAnchor.constraint(equalTo: ticketIconView.centerYAnchor),
+            couponsLabel.leadingAnchor.constraint(equalTo: couponsLabelQuantity.trailingAnchor, constant: 4),
+            
+            regulationTitleLabel.topAnchor.constraint(equalTo: couponsAvailableView.bottomAnchor, constant: 32),
             regulationTitleLabel.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 24),
             
             regulationLabel.topAnchor.constraint(equalTo: regulationTitleLabel.bottomAnchor, constant: 12),
             
-            divider2.topAnchor.constraint(equalTo: regulationLabel.bottomAnchor, constant: 16),
+            divider.topAnchor.constraint(equalTo: infoStackView.bottomAnchor, constant: 16),
+            divider.heightAnchor.constraint(equalToConstant: 1),
+            
+            infoTitleLabel.topAnchor.constraint(equalTo: regulationLabel.bottomAnchor, constant: 24),
+            infoTitleLabel.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 24),
+            
+            infoStackView.topAnchor.constraint(equalTo: infoTitleLabel.bottomAnchor, constant: 12),
+
+            divider2.topAnchor.constraint(equalTo: infoStackView.bottomAnchor, constant: 16),
             divider2.heightAnchor.constraint(equalToConstant: 1),
 
             couponTitleLabel.topAnchor.constraint(equalTo: divider2.bottomAnchor, constant: 16),
@@ -295,8 +354,8 @@ class DetailsViewController: UIViewController {
         guard let place = place else { return }
         titleLabel.text = place.name
         descriptionLabel.text = place.description
+        couponsLabelQuantity.text = String(place.coupons)
         
-        infoStackView.addArrangedSubview(createInfoRow(iconName: "ticket", text: "\(place.coupons) cupons disponíveis"))
         infoStackView.addArrangedSubview(createInfoRow(iconName: "mapIcon", text: place.address))
         infoStackView.addArrangedSubview(createInfoRow(iconName: "phone", text: place.phone))
         
