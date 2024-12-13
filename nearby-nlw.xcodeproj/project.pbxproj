@@ -148,6 +148,7 @@
 				DEVELOPMENT_TEAM = 6TD6L7U7L9;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "nearby-nlw/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = Nearby;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -175,6 +176,7 @@
 				DEVELOPMENT_TEAM = 6TD6L7U7L9;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "nearby-nlw/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = Nearby;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
